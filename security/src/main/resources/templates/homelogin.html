@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Auth Demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+<h2>Đăng ký</h2>
+<input id="regUser" placeholder="Username">
+<input id="regPass" type="password" placeholder="Password">
+<button onclick="register()">Register</button>
+
+<h2>Đăng nhập</h2>
+<input id="loginUser" placeholder="Username">
+<input id="loginPass" type="password" placeholder="Password">
+<button onclick="login()">Login</button>
+
+<script>
+const API = "http://localhost:8080/api/auth";
+
+async function register() {
+    try {
+        const res = await axios.post(API + "/register", {
+            username: document.getElementById("regUser").value,
+            password: document.getElementById("regPass").value
+        });
+
+        alert(res.data.message);
+
+    } catch (err) {
+        alert(err.response.data.message);
+    }
+}
+
+async function login() {
+    try {
+        const res = await axios.post(API + "/login", {
+            username: document.getElementById("loginUser").value,
+            password: document.getElementById("loginPass").value
+        });
+
+        alert("Login success: " + res.data.payload.username);
+
+    } catch (err) {
+        alert(err.response.data.message);
+    }
+}
+</script>
+
+</body>
+</html>
