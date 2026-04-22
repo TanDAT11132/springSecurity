@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Console</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        :root {
+            --bg: #f5f0e7;
+            --panel: rgba(255, 251, 245, 0.94);
+            --ink: #182019;
+            --muted: #556158;
+            --line: rgba(24, 32, 25, 0.1);
+            --brand: #145a46;
+            --brand-deep: #0d4434;
+            --sand: #eadfca;
+            --danger: #8f2b2b;
+            --shadow: 0 24px 60px rgba(19, 29, 23, 0.12);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at top right, rgba(20, 90, 70, 0.16), transparent 26%),
+                radial-gradient(circle at bottom left, rgba(190, 134, 68, 0.18), transparent 28%),
+                linear-gradient(135deg, #f0eadf, #faf7f0 48%, #e8efe4);
+            padding: 28px 18px 48px;
+        }
+
+        .wrap { max-width: 1280px; margin: 0 auto; }
+
+        .hero, .panel {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero {
+            padding: 28px;
+            margin-bottom: 24px;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 22px;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: rgba(20, 90, 70, 0.1);
+            color: var(--brand-deep);
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        h1 {
+            margin: 16px 0 10px;
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            line-height: 1.04;
+        }
+
+        p { color: var(--muted); line-height: 1.65; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .panel { padding: 22px; }
+        .panel h2 { margin: 0 0 8px; font-size: 1.3rem; }
+
+        .form-grid { display: grid; gap: 12px; }
+
+        .cols-2 {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--brand-deep);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 13px 14px;
+            border-radius: 14px;
+            border: 1px solid rgba(24, 32, 25, 0.12);
+            background: rgba(255, 255, 255, 0.86);
+            font: inherit;
+            color: var(--ink);
+        }
+
+        textarea { min-height: 120px; resize: vertical; }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        button {
+            border: none;
+            border-radius: 999px;
+            padding: 12px 17px;
+            font: inherit;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .primary { background: linear-gradient(135deg, var(--brand), var(--brand-deep)); color: #fff; }
+        .secondary { background: var(--sand); color: #583f20; }
+        .ghost { background: transparent; color: var(--brand-deep); border: 1px solid rgba(20, 90, 70, 0.18); }
+        .danger { background: rgba(143, 43, 43, 0.12); color: var(--danger); }
+
+        .meta-card {
+            padding: 18px;
+            border-radius: 18px;
+            background: rgba(20, 90, 70, 0.06);
+            border: 1px solid rgba(20, 90, 70, 0.14);
+        }
+
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .chip {
+            padding: 9px 12px;
+            border-radius: 999px;
+            background: #eef5f1;
+            color: var(--brand-deep);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px 10px;
+            border-bottom: 1px solid rgba(24, 32, 25, 0.08);
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--brand-deep); }
+        .table-wrap { overflow: auto; }
+
+        .console {
+            padding: 22px;
+            border-radius: 24px;
+            background: #1d241e;
+            color: #dfe9e2;
+            box-shadow: 0 24px 44px rgba(15, 20, 15, 0.22);
+        }
+
+        .console pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+            line-height: 1.55;
+        }
+
+        @media (max-width: 980px) {
+            .hero, .grid, .cols-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <section class="hero">
+            <div>
+                <span class="eyebrow">Book | Redis | JPA | RabbitMQ</span>
+                <h1>Trang book chỉ mở sau khi đăng nhập thành công bằng JWT cookie.</h1>
+                <p>
+                    Dữ liệu book được lưu trong SQL qua JPA/Hibernate, đọc nhanh từ Redis snapshot,
+                    có scheduler đồng bộ lại theo chu kỳ và có thể đẩy job dữ liệu lớn lên RabbitMQ.
+                </p>
+                <div class="actions" style="margin-top: 18px;">
+                    <button class="ghost" onclick="window.location.href='/index.html'">Về dashboard</button>
+                    <button class="secondary" onclick="validateToken()">Validate JWT</button>
+                    <button class="primary" onclick="manualSync()">Sync book cache</button>
+                    <button class="ghost" onclick="pushBulkJob()">Đẩy job RabbitMQ</button>
+                    <button class="danger" onclick="logout()">Logout</button>
+                </div>
+            </div>
+            <div class="meta-card">
+                <div class="eyebrow">Session</div>
+                <h2 id="sessionUser" style="margin: 12px 0 8px;">Đang tải...</h2>
+                <p id="sessionHint">Đang xác thực phiên hiện tại.</p>
+                <div class="stats">
+                    <span class="chip" id="redisState">Redis: đang chờ</span>
+                    <span class="chip" id="pageState">Page: 0</span>
+                    <span class="chip" id="countState">Total: 0</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="grid">
+            <div class="panel">
+                <h2>Book Form</h2>
+                <p>Tạo mới hoặc cập nhật book. Nếu có `id` thì update, bỏ trống thì create.</p>
+                <div class="form-grid">
+                    <div class="cols-2">
+                        <div>
+                            <label for="bookId">Id</label>
+                            <input id="bookId" placeholder="Tự động khi tạo mới">
+                        </div>
+                        <div>
+                            <label for="isbn">ISBN</label>
+                            <input id="isbn" placeholder="978-604-00-0001">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="title">Title</label>
+                        <input id="title" placeholder="Nhập tên sách">
+                    </div>
+                    <div class="cols-2">
+                        <div>
+                            <label for="author">Author</label>
+                            <input id="author" placeholder="Tác giả">
+                        </div>
+                        <div>
+                            <label for="category">Category</label>
+                            <input id="category" placeholder="Backend, Security, Database...">
+                        </div>
+                    </div>
+                    <div class="cols-2">
+                        <div>
+                            <label for="publishedYear">Published Year</label>
+                            <input id="publishedYear" type="number" placeholder="2026">
+                        </div>
+                        <div>
+                            <label for="available">Available</label>
+                            <select id="available">
+                                <option value="true">true</option>
+                                <option value="false">false</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="description">Description</label>
+                        <textarea id="description" placeholder="Mô tả ngắn cho book"></textarea>
+                    </div>
+                    <div class="actions">
+                        <button class="primary" onclick="saveBook()">Save book</button>
+                        <button class="secondary" onclick="resetForm()">Reset form</button>
+                        <button class="danger" onclick="deleteBookByInput()">Delete by id</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h2>Filter & Pageable</h2>
+                <p>Danh sách book ưu tiên đọc từ Redis snapshot. Nếu cache chưa có, backend sẽ fallback về SQL.</p>
+                <div class="form-grid">
+                    <div class="cols-2">
+                        <div>
+                            <label for="filterKeyword">Keyword</label>
+                            <input id="filterKeyword" placeholder="title / isbn / author">
+                        </div>
+                        <div>
+                            <label for="filterAuthor">Author</label>
+                            <input id="filterAuthor" placeholder="Lọc theo tác giả">
+                        </div>
+                    </div>
+                    <div class="cols-2">
+                        <div>
+                            <label for="filterCategory">Category</label>
+                            <input id="filterCategory" placeholder="Lọc theo category">
+                        </div>
+                        <div>
+                            <label for="filterAvailable">Available</label>
+                            <select id="filterAvailable">
+                                <option value="">Tất cả</option>
+                                <option value="true">true</option>
+                                <option value="false">false</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="cols-2">
+                        <div>
+                            <label for="page">Page</label>
+                            <input id="page" type="number" value="0" min="0">
+                        </div>
+                        <div>
+                            <label for="size">Size</label>
+                            <input id="size" type="number" value="10" min="1" max="100">
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <button class="primary" onclick="loadBooks()">Load books</button>
+                        <button class="secondary" onclick="prevPage()">Prev page</button>
+                        <button class="secondary" onclick="nextPage()">Next page</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel" style="margin-bottom: 24px;">
+            <h2>Book Table</h2>
+            <p>Click `Edit` để nạp book lên form, hoặc `View` để xem chi tiết.</p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>ISBN</th>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Category</th>
+                            <th>Year</th>
+                            <th>Available</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookTableBody">
+                        <tr><td colspan="8">Chưa có dữ liệu</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="console">
+            <pre id="consoleOutput">Sẵn sàng thao tác book API tại /api/books</pre>
+        </section>
+    </div>
+
+    <script>
+        const api = axios.create({
+            baseURL: window.location.origin,
+            headers: { "Content-Type": "application/json" }
+        });
+
+        async function requireSession() {
+            try {
+                const response = await api.get("/api/access/me");
+                document.getElementById("sessionUser").textContent = response.data.payload.username;
+                document.getElementById("sessionHint").textContent =
+                    "checkrole: " + response.data.payload.checkrole + " | roles: " + response.data.payload.roles.join(", ");
+            } catch (error) {
+                window.location.href = "/login.html";
+            }
+        }
+
+        function printConsole(title, data) {
+            const output = typeof data === "string" ? data : JSON.stringify(data, null, 2);
+            document.getElementById("consoleOutput").textContent = title + "\n\n" + output;
+        }
+
+        function getBookPayload() {
+            return {
+                isbn: document.getElementById("isbn").value,
+                title: document.getElementById("title").value,
+                author: document.getElementById("author").value,
+                category: document.getElementById("category").value,
+                description: document.getElementById("description").value,
+                publishedYear: document.getElementById("publishedYear").value ? Number(document.getElementById("publishedYear").value) : null,
+                available: document.getElementById("available").value === "true"
+            };
+        }
+
+        function fillForm(book) {
+            document.getElementById("bookId").value = book.id ?? "";
+            document.getElementById("isbn").value = book.isbn ?? "";
+            document.getElementById("title").value = book.title ?? "";
+            document.getElementById("author").value = book.author ?? "";
+            document.getElementById("category").value = book.category ?? "";
+            document.getElementById("description").value = book.description ?? "";
+            document.getElementById("publishedYear").value = book.publishedYear ?? "";
+            document.getElementById("available").value = String(book.available ?? true);
+        }
+
+        function resetForm() {
+            fillForm({});
+        }
+
+        async function saveBook() {
+            const id = document.getElementById("bookId").value.trim();
+            try {
+                const payload = getBookPayload();
+                const response = id
+                    ? await api.put("/api/books/" + id, payload)
+                    : await api.post("/api/books", payload);
+                fillForm(response.data.payload);
+                printConsole(id ? "Book updated" : "Book created", response.data);
+                await loadBooks();
+            } catch (error) {
+                printConsole("Save book failed", error.response?.data || error.message);
+            }
+        }
+
+        async function deleteBookByInput() {
+            const id = document.getElementById("bookId").value.trim();
+            if (!id) {
+                printConsole("Delete skipped", "Nhập id book trước khi xóa.");
+                return;
+            }
+            try {
+                const response = await api.delete("/api/books/" + id);
+                resetForm();
+                printConsole("Book deleted", response.data);
+                await loadBooks();
+            } catch (error) {
+                printConsole("Delete book failed", error.response?.data || error.message);
+            }
+        }
+
+        async function viewBook(id) {
+            try {
+                const response = await api.get("/api/books/" + id);
+                fillForm(response.data.payload);
+                printConsole("Book detail", response.data);
+            } catch (error) {
+                printConsole("View book failed", error.response?.data || error.message);
+            }
+        }
+
+        function toQuery() {
+            const params = {
+                keyword: document.getElementById("filterKeyword").value,
+                author: document.getElementById("filterAuthor").value,
+                category: document.getElementById("filterCategory").value,
+                page: Number(document.getElementById("page").value || 0),
+                size: Number(document.getElementById("size").value || 10)
+            };
+            const available = document.getElementById("filterAvailable").value;
+            if (available !== "") {
+                params.available = available;
+            }
+            return params;
+        }
+
+        function renderTable(pageResponse) {
+            const body = document.getElementById("bookTableBody");
+            const rows = pageResponse.content || [];
+            if (!rows.length) {
+                body.innerHTML = '<tr><td colspan="8">Không có book nào phù hợp</td></tr>';
+            } else {
+                body.innerHTML = rows.map((book) => `
+                    <tr>
+                        <td>${book.id}</td>
+                        <td>${book.isbn}</td>
+                        <td>${book.title}</td>
+                        <td>${book.author}</td>
+                        <td>${book.category ?? ""}</td>
+                        <td>${book.publishedYear ?? ""}</td>
+                        <td>${book.available}</td>
+                        <td>
+                            <button class="ghost" onclick="viewBook(${book.id})">View</button>
+                            <button class="secondary" onclick="viewBook(${book.id})">Edit</button>
+                        </td>
+                    </tr>
+                `).join("");
+            }
+            document.getElementById("redisState").textContent = "Redis: " + (pageResponse.fromRedis ? "có" : "fallback SQL");
+            document.getElementById("pageState").textContent = "Page: " + pageResponse.page + "/" + Math.max(pageResponse.totalPages - 1, 0);
+            document.getElementById("countState").textContent = "Total: " + pageResponse.totalElements;
+        }
+
+        async function loadBooks() {
+            try {
+                const response = await api.get("/api/books", { params: toQuery() });
+                renderTable(response.data.payload);
+                printConsole("Books loaded", response.data);
+            } catch (error) {
+                printConsole("Load books failed", error.response?.data || error.message);
+            }
+        }
+
+        async function manualSync() {
+            try {
+                const response = await api.post("/api/books/cache/sync");
+                printConsole("Redis sync completed", response.data);
+                await loadBooks();
+            } catch (error) {
+                printConsole("Redis sync failed", error.response?.data || error.message);
+            }
+        }
+
+        async function pushBulkJob() {
+            try {
+                const response = await api.post("/api/books/jobs/bulk-sync");
+                printConsole("RabbitMQ job published", response.data);
+            } catch (error) {
+                printConsole("RabbitMQ publish failed", error.response?.data || error.message);
+            }
+        }
+
+        async function validateToken() {
+            try {
+                const response = await api.get("/api/auth/validate");
+                printConsole("JWT valid", response.data);
+            } catch (error) {
+                printConsole("JWT invalid", error.response?.data || error.message);
+            }
+        }
+
+        async function logout() {
+            try {
+                await api.post("/api/auth/logout");
+            } finally {
+                window.location.href = "/login.html";
+            }
+        }
+
+        function prevPage() {
+            const pageInput = document.getElementById("page");
+            pageInput.value = Math.max(0, Number(pageInput.value || 0) - 1);
+            loadBooks();
+        }
+
+        function nextPage() {
+            const pageInput = document.getElementById("page");
+            pageInput.value = Number(pageInput.value || 0) + 1;
+            loadBooks();
+        }
+
+        requireSession().then(loadBooks);
+    </script>
+</body>
+</html>

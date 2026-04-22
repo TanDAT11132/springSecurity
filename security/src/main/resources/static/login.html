@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Login</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        :root {
+            --ink: #172019;
+            --muted: #5d665d;
+            --line: rgba(23, 32, 25, 0.12);
+            --accent: #1e6f50;
+            --accent-deep: #104f38;
+            --sand: #efe0c4;
+            --panel: rgba(255, 252, 246, 0.94);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at top left, rgba(30, 111, 80, 0.22), transparent 28%),
+                radial-gradient(circle at bottom right, rgba(208, 151, 74, 0.16), transparent 26%),
+                linear-gradient(135deg, #efe4d4, #fbf7ef 50%, #e5ecd8);
+            display: grid;
+            place-items: center;
+            padding: 24px;
+        }
+
+        .card {
+            width: min(960px, 100%);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            box-shadow: 0 28px 64px rgba(16, 24, 18, 0.16);
+            overflow: hidden;
+        }
+
+        .intro {
+            padding: 32px;
+            background:
+                radial-gradient(circle at top right, rgba(30, 111, 80, 0.18), transparent 26%),
+                linear-gradient(180deg, rgba(255,255,255,0.65), rgba(245, 239, 226, 0.88));
+        }
+
+        .eyebrow {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: rgba(30, 111, 80, 0.1);
+            color: var(--accent-deep);
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        h1 {
+            margin: 16px 0 12px;
+            font-size: clamp(2rem, 5vw, 3.4rem);
+            line-height: 1.03;
+        }
+
+        p {
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .panel {
+            padding: 32px;
+            display: grid;
+            gap: 22px;
+        }
+
+        .block {
+            border: 1px solid var(--line);
+            border-radius: 22px;
+            padding: 20px;
+            background: rgba(255,255,255,0.74);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--accent-deep);
+        }
+
+        input {
+            width: 100%;
+            border: 1px solid rgba(23, 32, 25, 0.14);
+            border-radius: 14px;
+            padding: 13px 14px;
+            font: inherit;
+            margin-bottom: 12px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            border: none;
+            border-radius: 999px;
+            padding: 12px 18px;
+            font: inherit;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .primary { background: linear-gradient(135deg, var(--accent), var(--accent-deep)); color: #fff; }
+        .secondary { background: var(--sand); color: #66491f; }
+
+        .console {
+            padding: 18px;
+            border-radius: 18px;
+            background: #1f261f;
+            color: #e1e9e2;
+            white-space: pre-wrap;
+            word-break: break-word;
+            line-height: 1.55;
+            min-height: 140px;
+        }
+
+        @media (max-width: 900px) {
+            .card {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <section class="intro">
+            <span class="eyebrow">Login First</span>
+            <h1>Trang tĩnh phía sau chỉ mở sau khi đã đăng nhập.</h1>
+            <p>
+                Khi login hoặc register thành công, backend phát JWT qua cookie `HttpOnly`.
+                Từ đó trình duyệt mới truy cập được dashboard và trang book.
+            </p>
+        </section>
+
+        <section class="panel">
+            <div class="block">
+                <h2>Đăng nhập</h2>
+                <label for="loginUser">Username</label>
+                <input id="loginUser" placeholder="vd: admin">
+                <label for="loginPass">Password</label>
+                <input id="loginPass" type="password" placeholder="Nhập mật khẩu">
+                <div class="actions">
+                    <button class="primary" onclick="login()">Login</button>
+                </div>
+            </div>
+
+            <div class="block">
+                <h2>Đăng ký</h2>
+                <label for="registerUser">Username</label>
+                <input id="registerUser" placeholder="username mới">
+                <label for="registerPass">Password</label>
+                <input id="registerPass" type="password" placeholder="mật khẩu">
+                <div class="actions">
+                    <button class="secondary" onclick="register()">Register</button>
+                </div>
+            </div>
+
+            <div id="consoleOutput" class="console">Sẵn sàng xác thực với backend.</div>
+        </section>
+    </div>
+
+    <script>
+        const api = axios.create({
+            baseURL: window.location.origin,
+            headers: { "Content-Type": "application/json" }
+        });
+
+        function printConsole(title, data) {
+            const output = typeof data === "string" ? data : JSON.stringify(data, null, 2);
+            document.getElementById("consoleOutput").textContent = title + "\n\n" + output;
+        }
+
+        async function login() {
+            try {
+                const response = await api.post("/api/auth/login", {
+                    username: document.getElementById("loginUser").value,
+                    password: document.getElementById("loginPass").value
+                });
+                printConsole("Login success", response.data);
+                window.location.href = "/index.html";
+            } catch (error) {
+                printConsole("Login failed", error.response?.data || error.message);
+            }
+        }
+
+        async function register() {
+            try {
+                const response = await api.post("/api/auth/register", {
+                    username: document.getElementById("registerUser").value,
+                    password: document.getElementById("registerPass").value
+                });
+                printConsole("Register success", response.data);
+                window.location.href = "/index.html";
+            } catch (error) {
+                printConsole("Register failed", error.response?.data || error.message);
+            }
+        }
+
+        api.get("/api/auth/validate")
+            .then(() => {
+                window.location.href = "/index.html";
+            })
+            .catch(() => {});
+    </script>
+</body>
+</html>

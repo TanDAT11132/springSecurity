@@ -1,0 +1,446 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "org.springframework.amqp",
+    "module": "spring-rabbit",
+    "version": "3.1.7",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.9"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.springframework.amqp",
+          "module": "spring-amqp",
+          "version": {
+            "requires": "3.1.7"
+          }
+        },
+        {
+          "group": "com.rabbitmq",
+          "module": "amqp-client",
+          "version": {
+            "requires": "5.19.0"
+          }
+        },
+        {
+          "group": "org.springframework",
+          "module": "spring-context",
+          "version": {
+            "requires": "6.1.12"
+          }
+        },
+        {
+          "group": "org.springframework",
+          "module": "spring-messaging",
+          "version": {
+            "requires": "6.1.12"
+          }
+        },
+        {
+          "group": "org.springframework",
+          "module": "spring-tx",
+          "version": {
+            "requires": "6.1.12"
+          }
+        },
+        {
+          "group": "io.micrometer",
+          "module": "micrometer-observation",
+          "version": {
+            "requires": "1.12.9"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "spring-rabbit-3.1.7.jar",
+          "url": "spring-rabbit-3.1.7.jar",
+          "size": 619894,
+          "sha512": "690fd01fc83e1abc8485b008f9804b10d922216d36a7b7e6bd78181afdca654efbd013211384e1af22bb61dee9609843b62343c2d2cbd2c810b308b4da8cac43",
+          "sha256": "eb63e8d80af7f02b8b1b96458dc8c7ecb373765fc5982a48b8423b381f5fb79e",
+          "sha1": "955d7fee7735369ab54f4f66ec1dbe763ffc5f44",
+          "md5": "fd45893408c4fa3b826d77ea08c684a9"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.springframework.amqp",
+          "module": "spring-amqp",
+          "version": {
+            "requires": "3.1.7"
+          }
+        },
+        {
+          "group": "com.rabbitmq",
+          "module": "amqp-client",
+          "version": {
+            "requires": "5.19.0"
+          }
+        },
+        {
+          "group": "org.springframework",
+          "module": "spring-context",
+          "version": {
+            "requires": "6.1.12"
+          }
+        },
+        {
+          "group": "org.springframework",
+          "module": "spring-messaging",
+          "version": {
+            "requires": "6.1.12"
+          }
+        },
+        {
+          "group": "org.springframework",
+          "module": "spring-tx",
+          "version": {
+            "requires": "6.1.12"
+          }
+        },
+        {
+          "group": "io.micrometer",
+          "module": "micrometer-observation",
+          "version": {
+            "requires": "1.12.9"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "spring-rabbit-3.1.7.jar",
+          "url": "spring-rabbit-3.1.7.jar",
+          "size": 619894,
+          "sha512": "690fd01fc83e1abc8485b008f9804b10d922216d36a7b7e6bd78181afdca654efbd013211384e1af22bb61dee9609843b62343c2d2cbd2c810b308b4da8cac43",
+          "sha256": "eb63e8d80af7f02b8b1b96458dc8c7ecb373765fc5982a48b8423b381f5fb79e",
+          "sha1": "955d7fee7735369ab54f4f66ec1dbe763ffc5f44",
+          "md5": "fd45893408c4fa3b826d77ea08c684a9"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "spring-rabbit-3.1.7-javadoc.jar",
+          "url": "spring-rabbit-3.1.7-javadoc.jar",
+          "size": 1133363,
+          "sha512": "e2b379569a74ac2dd8c05d27005a78726b8e13ccc86544954de68c0c89fb862df705462846a4974e6156a396a40d0211f9a611f20f3156e455987dedee2230d5",
+          "sha256": "40f8ae8b33eeb2813165429d5cc00a82822ef49ea74fad35aca6c1867c573cbd",
+          "sha1": "b36def4afba85c12f6c893f62866e357ac6cb7a6",
+          "md5": "71ee646de9ae48b1c384bf14a22cdfc3"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "spring-rabbit-3.1.7-sources.jar",
+          "url": "spring-rabbit-3.1.7-sources.jar",
+          "size": 440578,
+          "sha512": "5cdd152501ec8f36483d5de01492463cf5be20dc387f0e1f7351ce84d68d9a9f6c65a3f76f3619f4f1f790e91a07071d5ee1ebef35e279bec5d06827d3f8a6c3",
+          "sha256": "0f247d13795fc0ce3217c63bd2eee0ea89dc1e425cc4bb6576fe23b729bc0b77",
+          "sha1": "091ac6479401add8098d807c8fe991d6a6fbb756",
+          "md5": "b40ca9c318d2a58129a1ebcf4e3910d8"
+        }
+      ]
+    },
+    {
+      "name": "optionalApiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "org.springframework",
+          "module": "spring-aop",
+          "version": {
+            "requires": "6.1.12"
+          }
+        },
+        {
+          "group": "org.springframework",
+          "module": "spring-webflux",
+          "version": {
+            "requires": "6.1.12"
+          }
+        },
+        {
+          "group": "org.apache.httpcomponents.client5",
+          "module": "httpclient5",
+          "version": {
+            "requires": "5.2.3"
+          }
+        },
+        {
+          "group": "io.projectreactor",
+          "module": "reactor-core",
+          "version": {
+            "requires": "3.6.9"
+          }
+        },
+        {
+          "group": "io.projectreactor.netty",
+          "module": "reactor-netty-http",
+          "version": {
+            "requires": "1.1.22"
+          }
+        },
+        {
+          "group": "ch.qos.logback",
+          "module": "logback-classic",
+          "version": {
+            "requires": "1.4.14"
+          }
+        },
+        {
+          "group": "org.apache.logging.log4j",
+          "module": "log4j-core",
+          "version": {
+            "requires": "2.21.1"
+          }
+        },
+        {
+          "group": "io.micrometer",
+          "module": "micrometer-core",
+          "version": {
+            "requires": "1.12.9"
+          }
+        },
+        {
+          "group": "io.micrometer",
+          "module": "micrometer-tracing",
+          "version": {
+            "requires": "1.2.9"
+          }
+        },
+        {
+          "group": "org.springframework.data",
+          "module": "spring-data-commons",
+          "version": {
+            "requires": "3.2.9"
+          },
+          "excludes": [
+            {
+              "group": "org.springframework",
+              "module": "*"
+            }
+          ]
+        },
+        {
+          "group": "com.jayway.jsonpath",
+          "module": "json-path",
+          "version": {
+            "requires": "2.8.0"
+          }
+        },
+        {
+          "group": "org.apache.commons",
+          "module": "commons-pool2",
+          "version": {
+            "requires": "2.12.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-reactor",
+          "version": {
+            "requires": "1.7.3"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "spring-rabbit-3.1.7.jar",
+          "url": "spring-rabbit-3.1.7.jar",
+          "size": 619894,
+          "sha512": "690fd01fc83e1abc8485b008f9804b10d922216d36a7b7e6bd78181afdca654efbd013211384e1af22bb61dee9609843b62343c2d2cbd2c810b308b4da8cac43",
+          "sha256": "eb63e8d80af7f02b8b1b96458dc8c7ecb373765fc5982a48b8423b381f5fb79e",
+          "sha1": "955d7fee7735369ab54f4f66ec1dbe763ffc5f44",
+          "md5": "fd45893408c4fa3b826d77ea08c684a9"
+        }
+      ],
+      "capabilities": [
+        {
+          "group": "org.springframework.amqp",
+          "name": "spring-rabbit-optional",
+          "version": "3.1.7"
+        }
+      ]
+    },
+    {
+      "name": "optionalRuntimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "org.springframework",
+          "module": "spring-aop",
+          "version": {
+            "requires": "6.1.12"
+          }
+        },
+        {
+          "group": "org.springframework",
+          "module": "spring-webflux",
+          "version": {
+            "requires": "6.1.12"
+          }
+        },
+        {
+          "group": "org.apache.httpcomponents.client5",
+          "module": "httpclient5",
+          "version": {
+            "requires": "5.2.3"
+          }
+        },
+        {
+          "group": "io.projectreactor",
+          "module": "reactor-core",
+          "version": {
+            "requires": "3.6.9"
+          }
+        },
+        {
+          "group": "io.projectreactor.netty",
+          "module": "reactor-netty-http",
+          "version": {
+            "requires": "1.1.22"
+          }
+        },
+        {
+          "group": "ch.qos.logback",
+          "module": "logback-classic",
+          "version": {
+            "requires": "1.4.14"
+          }
+        },
+        {
+          "group": "org.apache.logging.log4j",
+          "module": "log4j-core",
+          "version": {
+            "requires": "2.21.1"
+          }
+        },
+        {
+          "group": "io.micrometer",
+          "module": "micrometer-core",
+          "version": {
+            "requires": "1.12.9"
+          }
+        },
+        {
+          "group": "io.micrometer",
+          "module": "micrometer-tracing",
+          "version": {
+            "requires": "1.2.9"
+          }
+        },
+        {
+          "group": "org.springframework.data",
+          "module": "spring-data-commons",
+          "version": {
+            "requires": "3.2.9"
+          },
+          "excludes": [
+            {
+              "group": "org.springframework",
+              "module": "*"
+            }
+          ]
+        },
+        {
+          "group": "com.jayway.jsonpath",
+          "module": "json-path",
+          "version": {
+            "requires": "2.8.0"
+          }
+        },
+        {
+          "group": "org.apache.commons",
+          "module": "commons-pool2",
+          "version": {
+            "requires": "2.12.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-reactor",
+          "version": {
+            "requires": "1.7.3"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "spring-rabbit-3.1.7.jar",
+          "url": "spring-rabbit-3.1.7.jar",
+          "size": 619894,
+          "sha512": "690fd01fc83e1abc8485b008f9804b10d922216d36a7b7e6bd78181afdca654efbd013211384e1af22bb61dee9609843b62343c2d2cbd2c810b308b4da8cac43",
+          "sha256": "eb63e8d80af7f02b8b1b96458dc8c7ecb373765fc5982a48b8423b381f5fb79e",
+          "sha1": "955d7fee7735369ab54f4f66ec1dbe763ffc5f44",
+          "md5": "fd45893408c4fa3b826d77ea08c684a9"
+        }
+      ],
+      "capabilities": [
+        {
+          "group": "org.springframework.amqp",
+          "name": "spring-rabbit-optional",
+          "version": "3.1.7"
+        }
+      ]
+    }
+  ]
+}

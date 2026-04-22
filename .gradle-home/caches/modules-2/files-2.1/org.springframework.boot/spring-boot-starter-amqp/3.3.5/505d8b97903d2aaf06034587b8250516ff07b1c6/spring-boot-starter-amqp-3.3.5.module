@@ -1,0 +1,146 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "org.springframework.boot",
+    "module": "spring-boot-starter-amqp",
+    "version": "3.3.5",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.10.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "org.springframework.boot",
+          "module": "spring-boot-starter",
+          "version": {
+            "requires": "3.3.5"
+          }
+        },
+        {
+          "group": "org.springframework",
+          "module": "spring-messaging",
+          "version": {
+            "requires": "6.1.14"
+          }
+        },
+        {
+          "group": "org.springframework.amqp",
+          "module": "spring-rabbit",
+          "version": {
+            "requires": "3.1.7"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "spring-boot-starter-amqp-3.3.5.jar",
+          "url": "spring-boot-starter-amqp-3.3.5.jar",
+          "size": 4753,
+          "sha512": "37af28c434ff75956fef1a6e105b50b92fc48c0433b2cf1066895db28c2d125abc4256bff1e0f9b39a97c7a185e709e0ec20f0ba968d415788ef746a4e1c3301",
+          "sha256": "ea72306f765bcb2075e747aa6d92644251b00ec8a38c7996d7217097c06c4c4b",
+          "sha1": "7dd83bec76df286afe9a43233dbad877ca452843",
+          "md5": "0cbfc65004bb1195004d210c286e8061"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "org.springframework.boot",
+          "module": "spring-boot-starter",
+          "version": {
+            "requires": "3.3.5"
+          }
+        },
+        {
+          "group": "org.springframework",
+          "module": "spring-messaging",
+          "version": {
+            "requires": "6.1.14"
+          }
+        },
+        {
+          "group": "org.springframework.amqp",
+          "module": "spring-rabbit",
+          "version": {
+            "requires": "3.1.7"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "spring-boot-starter-amqp-3.3.5.jar",
+          "url": "spring-boot-starter-amqp-3.3.5.jar",
+          "size": 4753,
+          "sha512": "37af28c434ff75956fef1a6e105b50b92fc48c0433b2cf1066895db28c2d125abc4256bff1e0f9b39a97c7a185e709e0ec20f0ba968d415788ef746a4e1c3301",
+          "sha256": "ea72306f765bcb2075e747aa6d92644251b00ec8a38c7996d7217097c06c4c4b",
+          "sha1": "7dd83bec76df286afe9a43233dbad877ca452843",
+          "md5": "0cbfc65004bb1195004d210c286e8061"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "spring-boot-starter-amqp-3.3.5-javadoc.jar",
+          "url": "spring-boot-starter-amqp-3.3.5-javadoc.jar",
+          "size": 4753,
+          "sha512": "37af28c434ff75956fef1a6e105b50b92fc48c0433b2cf1066895db28c2d125abc4256bff1e0f9b39a97c7a185e709e0ec20f0ba968d415788ef746a4e1c3301",
+          "sha256": "ea72306f765bcb2075e747aa6d92644251b00ec8a38c7996d7217097c06c4c4b",
+          "sha1": "7dd83bec76df286afe9a43233dbad877ca452843",
+          "md5": "0cbfc65004bb1195004d210c286e8061"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "spring-boot-starter-amqp-3.3.5-sources.jar",
+          "url": "spring-boot-starter-amqp-3.3.5-sources.jar",
+          "size": 4753,
+          "sha512": "37af28c434ff75956fef1a6e105b50b92fc48c0433b2cf1066895db28c2d125abc4256bff1e0f9b39a97c7a185e709e0ec20f0ba968d415788ef746a4e1c3301",
+          "sha256": "ea72306f765bcb2075e747aa6d92644251b00ec8a38c7996d7217097c06c4c4b",
+          "sha1": "7dd83bec76df286afe9a43233dbad877ca452843",
+          "md5": "0cbfc65004bb1195004d210c286e8061"
+        }
+      ]
+    }
+  ]
+}

@@ -9,7 +9,7 @@ version = '0.0.1-SNAPSHOT'
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(21)
+		languageVersion = JavaLanguageVersion.of(22)
 	}
 }
 
@@ -22,10 +22,19 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-cache'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
     implementation 'com.microsoft.sqlserver:mssql-jdbc'
-    implementation 'org.projectlombok:lombok'
+    implementation platform('io.jsonwebtoken:jjwt-bom:0.12.7')
+    implementation 'io.jsonwebtoken:jjwt-api'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson'
+    compileOnly 'org.projectlombok:lombok'
+    testImplementation 'com.h2database:h2'
 
     annotationProcessor 'org.projectlombok:lombok'
 

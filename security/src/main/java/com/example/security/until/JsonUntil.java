@@ -1,15 +1,11 @@
 package com.example.security.until;
 
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import net.bytebuddy.asm.Advice.Return;
-
 public final class JsonUntil {
 	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper().findAndRegisterModules();
-	public JsonUntil() {
-		// TODO Auto-generated constructor stub
+	private JsonUntil() {
 	}
 	public static String toJon(Object object) {
 		try {

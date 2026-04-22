@@ -1,0 +1,146 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "org.springframework.boot",
+    "module": "spring-boot-starter-data-redis",
+    "version": "3.3.5",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.10.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "org.springframework.boot",
+          "module": "spring-boot-starter",
+          "version": {
+            "requires": "3.3.5"
+          }
+        },
+        {
+          "group": "io.lettuce",
+          "module": "lettuce-core",
+          "version": {
+            "requires": "6.3.2.RELEASE"
+          }
+        },
+        {
+          "group": "org.springframework.data",
+          "module": "spring-data-redis",
+          "version": {
+            "requires": "3.3.5"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "spring-boot-starter-data-redis-3.3.5.jar",
+          "url": "spring-boot-starter-data-redis-3.3.5.jar",
+          "size": 4785,
+          "sha512": "225afe8a46fbba69938cb626163aeed3a3b63b1576b36e2313a15d23afdf388bd57290c16ccfcadc56f13f940099a8e1806f06952c9a53c36b098eaf5fa21849",
+          "sha256": "0fd4130ff03ac5ae3a297ced7637289558bd40212850e60fa4bc31e969f78cdd",
+          "sha1": "5156ce55ab1d9445d5175fdf7119aecf830c7dde",
+          "md5": "a967557a1c46fb4adce8929fa7d44581"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "org.springframework.boot",
+          "module": "spring-boot-starter",
+          "version": {
+            "requires": "3.3.5"
+          }
+        },
+        {
+          "group": "io.lettuce",
+          "module": "lettuce-core",
+          "version": {
+            "requires": "6.3.2.RELEASE"
+          }
+        },
+        {
+          "group": "org.springframework.data",
+          "module": "spring-data-redis",
+          "version": {
+            "requires": "3.3.5"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "spring-boot-starter-data-redis-3.3.5.jar",
+          "url": "spring-boot-starter-data-redis-3.3.5.jar",
+          "size": 4785,
+          "sha512": "225afe8a46fbba69938cb626163aeed3a3b63b1576b36e2313a15d23afdf388bd57290c16ccfcadc56f13f940099a8e1806f06952c9a53c36b098eaf5fa21849",
+          "sha256": "0fd4130ff03ac5ae3a297ced7637289558bd40212850e60fa4bc31e969f78cdd",
+          "sha1": "5156ce55ab1d9445d5175fdf7119aecf830c7dde",
+          "md5": "a967557a1c46fb4adce8929fa7d44581"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "spring-boot-starter-data-redis-3.3.5-javadoc.jar",
+          "url": "spring-boot-starter-data-redis-3.3.5-javadoc.jar",
+          "size": 4785,
+          "sha512": "225afe8a46fbba69938cb626163aeed3a3b63b1576b36e2313a15d23afdf388bd57290c16ccfcadc56f13f940099a8e1806f06952c9a53c36b098eaf5fa21849",
+          "sha256": "0fd4130ff03ac5ae3a297ced7637289558bd40212850e60fa4bc31e969f78cdd",
+          "sha1": "5156ce55ab1d9445d5175fdf7119aecf830c7dde",
+          "md5": "a967557a1c46fb4adce8929fa7d44581"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "spring-boot-starter-data-redis-3.3.5-sources.jar",
+          "url": "spring-boot-starter-data-redis-3.3.5-sources.jar",
+          "size": 4785,
+          "sha512": "225afe8a46fbba69938cb626163aeed3a3b63b1576b36e2313a15d23afdf388bd57290c16ccfcadc56f13f940099a8e1806f06952c9a53c36b098eaf5fa21849",
+          "sha256": "0fd4130ff03ac5ae3a297ced7637289558bd40212850e60fa4bc31e969f78cdd",
+          "sha1": "5156ce55ab1d9445d5175fdf7119aecf830c7dde",
+          "md5": "a967557a1c46fb4adce8929fa7d44581"
+        }
+      ]
+    }
+  ]
+}
